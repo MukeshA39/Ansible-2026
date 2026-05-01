@@ -1,0 +1,54 @@
+- name: System level commands setup
+  hosts: '{{ target_vm }}' 
+  tasks:
+    - name: Upload yum-utils-4.3.0-13.el9.noarch.rpm
+      ansible.builtin.copy:
+        src: ../your-folder_rpms/yum-utils-4.3.0-13.el9.noarch.rpm
+        dest: /opt/your-folder_rpms/yum-utils-4.3.0-13.el9.noarch.rpm
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: '0755'
+
+    - name: Upload net-tools-2.0-0.62.20160912git.el9.x86_64.rpm
+      ansible.builtin.copy:
+        src: ../your-folder_rpms/net-tools-2.0-0.62.20160912git.el9.x86_64.rpm
+        dest: /opt/your-folder_rpms/net-tools-2.0-0.62.20160912git.el9.x86_64.rpm
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: '0755'
+
+    - name: Upload nmap-ncat-7.92-1.el9.x86_64.rpm
+      ansible.builtin.copy:
+        src: ../your-folder_rpms/nmap-ncat-7.92-1.el9.x86_64.rpm
+        dest: /opt/your-folder_rpms/nmap-ncat-7.92-1.el9.x86_64.rpm
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: '0755'
+
+    - name: Upload htop-3.2.2-1.el9.x86_64.rpm
+      ansible.builtin.copy:
+        src: ../your-folder_rpms/htop-3.2.2-1.el9.x86_64.rpm
+        dest: /opt/your-folder_rpms/htop-3.2.2-1.el9.x86_64.rpm
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: '0755'
+
+    - name: Install yum-utils
+      ansible.builtin.shell: sudo yum install -y /opt/your-folder_rpms/yum-utils-4.3.0-13.el9.noarch.rpm
+      args:
+        executable: /bin/bash
+
+    - name: Install net-tools
+      ansible.builtin.shell: sudo yum install -y /opt/your-folder_rpms/net-tools-2.0-0.62.20160912git.el9.x86_64.rpm
+      args:
+        executable: /bin/bash
+
+    - name: Install nmap-ncat
+      ansible.builtin.shell: sudo yum install -y /opt/your-folder_rpms/nmap-ncat-7.92-1.el9.x86_64.rpm
+      args:
+        executable: /bin/bash
+
+    - name: Install htop
+      ansible.builtin.shell: sudo yum install -y /opt/your-folder_rpms/htop-3.2.2-1.el9.x86_64.rpm
+      args:
+        executable: /bin/bash
