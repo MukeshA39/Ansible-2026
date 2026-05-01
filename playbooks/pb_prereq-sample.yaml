@@ -1,0 +1,27 @@
+- name: Prepare target VMs
+  hosts: '{{ target_vm }}' 
+  tasks:
+    - name: Setup timezone
+      ansible.builtin.shell: sudo timedatectl set-timezone '{{ timezone }}'
+      args:
+        executable: /bin/bash
+
+    - name: Make sure 777 mode for /opt directory
+      ansible.builtin.file:
+        path: /opt
+        state: directory
+        owner: root
+        group: root
+        mode: 0777
+        recurse: no
+      become: yes
+
+    - name: Create /opt/your_folder_rpms directory
+      ansible.builtin.file:
+        path: /opt/moxy_rpms
+        state: directory
+        owner: '{{ user }}'
+        group: '{{ user }}'
+        mode: 0755
+        recurse: no
+      become: yes
