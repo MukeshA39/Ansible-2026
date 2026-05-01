@@ -1,0 +1,61 @@
+all_vm:
+  children:
+    db_vm:
+    app_1_vm:
+    app_2_vm:
+    zookeeper_vm:
+    kafka_vm:
+    redis_vm:
+  vars:
+    ansible_user: '{{ user }}'
+
+splunk_vm:
+  children:
+    db_vm:
+    app_1_vm:
+    app_2_vm:
+    zookeeper_vm:
+    kafka_vm:
+    redis_vm:
+  vars:
+    ansible_user: '{{ user }}'
+
+db_vm:
+  children:
+    db_vm1:
+    db_vm2:
+    db_vm3:
+
+db_vm1:
+  hosts:
+    db1-xxx-01.xxx.xx.xxx.com:
+      ansible_host: db1-xxx-01.xxx.xx.xxx.com
+
+db_vm2:
+  hosts:
+    db2-xxx-02.xxx.xx.xxx.com:
+      ansible_host: db2-xxx-01.xxx.xx.xxx.com
+
+db_vm3:
+  hosts:
+    db3-xxx-02.xxx.xx.xxx.com:
+      ansible_host: db3-xxx-02.xxx.xx.xxx.com
+
+app_1_vm:
+  hosts:
+    app1-xxx-01.xxx.xx.xxx.com:
+      ansible_host: app1-xxx-01.xxx.xx.xxx.com
+
+    moxyssp-knwd-02.knwd.mi.charter.com:
+      ansible_host: app1-xxx-01.xxx.xx.xxx.com
+
+
+app_2_vm:
+  hosts:
+    app2a-xxx-02.xxx.xx.xxx.com:
+      ansible_host: app2a-xxx-01.xxx.xx.xxx.com
+
+
+    app3a-xxx-03.xxx.xx.xxx.com:
+      ansible_host: app3a-xxx-03.xxx.xx.xxx.com
+
